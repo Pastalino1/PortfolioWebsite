@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!----======== CSS ======== -->
+    
+    <!----===== Icons CSS ===== -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />    
+    <!--<title>Dashboard Sidebar Menu</title>--> 
+    <link rel="stylesheet" href="services.css" />
+<style>
+    /* Google Font Import - Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+:root{
+    /* ===== Colors ===== */
+    --body-color: #dfdfdf;
+    --sidebar-color: linear-gradient(120deg, #5d003c 0%, #C30081 70%);
+    --primary-color: rgba(255, 255, 255, 0.482);
+    --primary-color-light: #F6F5FF;
+    --toggle-color: #DDD;
+    --text-color: white;
+
+    /* ====== Transition ====== */
+    --tran-03: all 0.2s ease;
+    --tran-03: all 0.3s ease;
+    --tran-04: all 0.3s ease;
+    --tran-05: all 0.3s ease;
+}
+
+body{
+    min-height: 100vh;
+    background-color: var(--body-color);
+    transition: var(--tran-05);
+}
+
+::selection{
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+body.dark{
+    --body-color: #18191a;
+    --sidebar-color: #242526;
+    --primary-color: #3a3b3c;
+    --primary-color-light: #3a3b3c;
+    --toggle-color: #fff;
+    --text-color: #ccc;
+}
+
+/* ===== Sidebar ===== */
+ .sidebar{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 250px;
+    padding: 10px 14px;
+    background: var(--sidebar-color);
+    transition: var(--tran-05);
+    z-index: 100;  
+}
+.sidebar.close{
+    width: 88px;
+}
+
+/* ===== Reusable code - Here ===== */
+.sidebar li{
+    height: 50px;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.sidebar header .image,
+.sidebar .icon{
+    min-width: 60px;
+    border-radius: 6px;
+}
+
+.sidebar .icon{
+    min-width: 60px;
+    border-radius: 6px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+}
+
+.sidebar .text,
+.sidebar .icon{
+    color: var(--text-color);
+    transition: var(--tran-03);
+}
+
+.sidebar .text{
+    font-size: 17px;
+    font-weight: 500;
+    white-space: nowrap;
+    opacity: 1;
+}
+.sidebar.close .text{
+    opacity: 0;
+}
+/* =========================== */
+
+.sidebar header{
+    position: relative;
+}
+
+.sidebar header .image-text{
+    display: flex;
+    align-items: center;
+}
+.sidebar header .logo-text{
+    display: flex;
+    flex-direction: column;
+}
+header .image-text .name {
+    margin-top: 2px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+header .image-text .profession{
+    font-size: 16px;
+    margin-top: -2px;
+    display: block;
+}
+
+.sidebar header .image{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sidebar header .image img{
+    width: 40px;
+    border-radius: 6px;
+}
+
+.sidebar header .toggle{
+    position: absolute;
+    top: 50%;
+    right: -25px;
+    transform: translateY(-50%) rotate(180deg);
+    height: 35px;
+    width: 35px;
+    background-color: #c694b4;
+    color: var(--sidebar-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    cursor: pointer;
+    transition: var(--tran-05);
+}
+
+body.dark .sidebar header .toggle{
+    color: var(--text-color);
+}
+
+.sidebar.close .toggle{
+    transform: translateY(-50%) rotate(0deg);
+}
+
+.sidebar .menu{
+    margin-top: 40px;
+}
+
+
+
+
+.sidebar li a{
+    list-style: none;
+    height: 100%;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: var(--tran-03);
+}
+
+.sidebar li a:hover{
+    background-color: var(--primary-color);
+}
+.sidebar li a:hover .icon,
+.sidebar li a:hover .text{
+    color: black;
+}
+body.dark .sidebar li a:hover .icon,
+body.dark .sidebar li a:hover .text{
+    color: var(--text-color);
+}
+
+.sidebar .menu-bar{
+    height: calc(100% - 55px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow-y: scroll;
+}
+.menu-bar::-webkit-scrollbar{
+    display: none;
+}
+.sidebar .menu-bar .mode{
+    border-radius: 6px;
+    background-color: var(--primary-color-light);
+    position: relative;
+    transition: var(--tran-05);
+}
+
+.menu-bar .mode .sun-moon{
+    height: 50px;
+    width: 60px;
+}
+
+.mode .sun-moon i{
+    position: absolute;
+}
+.mode .sun-moon i.sun{
+    opacity: 0;
+}
+body.dark .mode .sun-moon i.sun{
+    opacity: 1;
+}
+body.dark .mode .sun-moon i.moon{
+    opacity: 0;
+}
+
+.menu-bar .bottom-content .toggle-switch{
+    position: absolute;
+    right: 0;
+    height: 100%;
+    min-width: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    cursor: pointer;
+}
+.toggle-switch .switch{
+    position: relative;
+    height: 22px;
+    width: 40px;
+    border-radius: 25px;
+    background-color: var(--toggle-color);
+    transition: var(--tran-05);
+}
+
+.switch::before{
+    content: '';
+    position: absolute;
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    background-color: var(--sidebar-color);
+    transition: var(--tran-04);
+}
+
+body.dark .switch::before{
+    left: 20px;
+}
+
+.home{
+    position: absolute;
+    top: 0;
+    top: 0;
+    left: 250px;
+    height: 100vh;
+    width: calc(100% - 250px);
+    background-color: var(--body-color);
+    transition: var(--tran-05);
+}
+.home .text{
+    font-size: 30px;
+    font-weight: 500;
+    color: var(--text-color);
+    padding: 12px 60px;
+}
+
+.sidebar.close ~ .home{
+    left: 78px;
+    height: 100vh;
+    width: calc(100% - 78px);
+}
+body.dark .home .text{
+    color: var(--text-color);
+}
+i{
+    font-size: 25px;
+    margin-left: 10px;
+    margin-right: 20px;
+    color: white;
+}
+.menuicon{
+    font-size: 17px !important;
+    margin-right: 0px;
+}
+span {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+.menu-bar{
+    margin-top: 50px;
+}
+/*cvbtn*/
+.cv{
+    margin-top: -120px !important;
+    
+}
+.cvic{
+    margin-left: -2px;
+}
+.cv a {
+    display: flex !important;
+    align-items: center !important;
+    padding: 10px 20px;
+    background-color: #ffffffc0 !important;
+    border: 2px solid #000000 !important;
+    border-radius: 5px !important;
+    color: black !important;
+    text-decoration: none !important;
+    transition: all 0.3s ease !important;
+  }
+  .cv a .text {
+    color: #000000 !important; /* Black text before hover */
+    font-weight: 600 !important;
+  }
+  .cv a:hover {
+    background-color: #ffffff !important;
+    color: #ffffff !important;
+    border-color: #000000 !important;
+  }
+  
+  /* Ensure the text color changes on hover */
+  .cv a:hover .text {
+    color: #000000 !important;
+  }
+  
+  .cv a .icon {
+    margin-right: 8px !important;
+    font-size: 18px !important;
+  }
+  
+  /* Optional: Make the icon and text stand out with a subtle scale effect */
+  .cv a:hover .icon,
+  .cv a:hover .text {
+    transform: scale(1.1) !important;
+  }
+  
+  /* Ensure smooth transition for the hover effect */
+  .cv a .icon,
+  .cv a .text {
+    transition: transform 0.3s ease !important;
+    text-shadow: none !important;
+
+  }
+  .ppic{
+    margin-left: -5px;
+  }
+  
+/*HireMe BTN*/
+
+/* Ensure the button's container only affects its own layout */
+.hire-me-button {
+    position: fixed;
+    top: 40px;
+    right: 30px;
+    z-index: 1000; /* Ensure it's above other content */
+  }
+  
+  /* Style the button */
+  .hire-me-button a {
+    padding: 10px 20px;
+    background-color: #ffffff40;
+    border: 2px solid #5D003D;
+    color: #5D003D;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+  }
+  
+  /* Hover effect */
+  .hire-me-button a:hover {
+    background-color: #bb077c;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .hire-me-button {
+      right: 5px;
+    }
+  
+    .hire-me-button a {
+      padding: 8px 16px;
+      font-size: 14px;
+    }
+  }
+  
+
+
+
+/**/
+</style>
+</head>
+<body>
+
+<!--SideBar-->
+    <nav class="sidebar close">
+        <header>
+            <div class="image-text">
+                <span class="image">
+                    <img src="assets/user.png" class="ppic">
+                </span>
+
+                <div class="text logo-text">
+                    <span class="name">Kosay Mahjoubi</span>
+                    <span class="profession">Web developer</span>
+                </div>
+            </div>
+
+            <i class="fa-solid fa-bars toggle menuicon" style="color: #ffffff;"></i>
+        </header>
+
+        <div class="menu-bar">
+            <div class="menu">
+
+
+
+                <ul class="menu-links">
+                    <li class="nav-link">
+                        <a href="index.html">
+                            <i class="fa-solid fa-user"></i>
+                            <span class="text nav-text">About Me</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="services.html">
+                            <i class="fa-solid fa-handshake"></i>
+                            <span class="text nav-text">Services</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="projects.html">
+                            <i class="fa-solid fa-folder-open"></i>
+                            <span class="text nav-text">My Projects</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="https://bio.link/koussaym">
+                            <i class="fa-solid fa-phone"></i>
+                            <span class="text nav-text">Contact </span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="testimonials.html">
+                            <i class="fa-solid fa-star"></i>
+                            <span class="text nav-text">Testimonials</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class="fa-solid fa-newspaper"></i>
+                            <span class="text nav-text">Blog</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+
+            <div class="bottom-content">
+                <li class="cv">
+                    <a href="assets/CV_KosayMahjoubi.pdf">
+                        <i class="fa-solid fa-file-arrow-down cvic" style="color: #000000;"></i>
+                        <span class="text nav-text">Download CV</span>
+                    </a>
+                </li>
+
+
+            </div>
+        </div>
+
+    </nav>
+    <div class="hire-me-button">
+        <a href="https://bio.link/koussaym">Hire Me</a>
+      </div>
+      
+<!--Main Content-->
+    <section class="home">
+        
+
+<div class="main-container">
+    <div class="heading">
+      <h1 class="heading__title servicestitle">My Recent Projects</h1>
+    </div>
+</div>
+
+    
+<header>
+  </header>
+  <div class="band">
+    <div class="item-1">
+      <a href="https://www.linkedin.com/posts/koussay-mahjoubi_internship-ml-innovation-activity-7227687509953040384-nft0?utm_source=share&utm_medium=member_desktop" class="card">
+        <div class="thumb" style="background-image: url(https://i.postimg.cc/CLMmv1my/ts.gif);"></div>
+        <article>
+          <h1>Machine Learning Project: TripSphere</h1>
+          <span>Angular, Django</span>
+        </article>
+      </a>
+    </div>
+    <div class="item-2">
+      <a href="https://www.linkedin.com/posts/koussay-mahjoubi_innovation-digitaltransformation-webabrdevelopment-activity-7212623696241324032-dskK?utm_source=share&utm_medium=member_desktop" class="card">
+        <div class="thumb" style="background-image: url(https://i.postimg.cc/QNvc7dwk/interacti-1.gif);"></div>
+        <article>
+          <h1>Interactiagency.com,(Marketing Agency)</h1>
+          <span>Timber, WP</span>
+        </article>
+      </a>
+    </div>
+    <div class="item-3">
+      <a href="https://github.com/Pastalino1/MTCode" class="card">
+        <div class="thumb" style="background-image: url(https://i.postimg.cc/W11pbM89/mtc.gif);"></div>
+        <article>
+          <h1>MTCode V1</h1>
+          <p> A dynamic website for MtcodeV1 hackathon hosted by Microsoft
+            Tech Club ISGIS</p>
+          <span>PHP</span>
+        </article>
+      </a>
+    </div>
+    <div class="item-4">
+      <a href="" class="card">
+        <div class="thumb" style="background-image: url(https://i.postimg.cc/TYqqXXNV/timo-Made-with-Clipchamp-1.gif);"></div>
+        <article>
+          <h1>Timo Mobile App</h1>
+          <p>Mobile app for autistic children with interactive learning </p>
+          <span>React Native</span>
+        </article>
+      </a>
+    </div>
+    <div class="item-5">
+      <a href="" class="card">
+        <div class="thumb" style="background-image: url(https://i.postimg.cc/vmWG03ZZ/Shoes.gif);"></div>
+        <article>
+          <h1>StrideLux (Shoes Brand)</h1>
+          <span>Timber, WP</span>
+        </article>
+      </a>
+    </div>
+    <div class="item-6">
+      <a href="" class="card">
+        <div class="thumb" style="background-image: url(https://i.postimg.cc/hjNWgmj5/2024-08-20-14-50-49-Koussay-s-Portfolio-Google-Drive.png);"></div>
+        <article>
+          <h1>StrideLux Logo</h1>
+  
+          <span>Adobe Illustrator</span>
+        </article>
+      </a>
+    </div>
+    <div class="item-7">
+      <a href="" class="card">
+        <div class="thumb" style="background-image: url(https://i.postimg.cc/mgjvkJkM/AFFICHE-Marketing-Agency.png);"></div>
+        <article>
+          <h1>IG Poster</h1>
+          <span>Adobe Illustrator</span>
+        </article>
+      </a>
+    </div>
+  </div>
+  
+
+<br>
+
+
+
+
+<header>
+  </header>
+  <div class="band">
+    <div class="item-1">
+      <a href="https://www.linkedin.com/posts/koussay-mahjoubi_flutter-mobile-appdev-activity-7259339655458766848-S609?utm_source=share&utm_medium=member_desktop" class="card">
+        <div class="thumb" style="background-image: url(https://i.postimg.cc/9Qv7fyvT/flutter-1.gif);"></div>
+        <article>
+          <h1>LiftAura Mobile App | RAG Chatbot</h1>
+          <span>Flutter, Firebase</span>
+        </article>
+      </a>
+    </div>
+    <div class="item-2">
+      <a href="https://mtcisgis.com/" class="card">
+        <div class="thumb" style="background-image: url(https://i.postimg.cc/4dhZx9RK/464008796-122172863678150033-9053834874909189406-n.jpg);"></div>
+        <article>
+          <h1>Mtcisgis.com : Microsoft Tech club Website</h1>
+          <span>PHP laravel</span>
+        </article>
+      </a>
+    </div>
+    <div class="item-3">
+      <a href="" class="card">
+        <div class="thumb" style="background-image: url(https://i.postimg.cc/JzbkGsm2/tembri.gif);"></div>
+        <article>
+          <h1>UI/UX Design: "Tembri"</h1>
+          <p>Full design system for an E-commerce website for a Fashion brand</p>
+          <span>Figma</span>
+        </article>
+      </a>
+    </div>
+    <div class="item-4">
+      <a href="" class="card">
+        <div class="thumb" style="background-image: url(https://i.postimg.cc/RF3Kd9jr/Screenshot-1.png);"></div>
+        <article>
+          <h1>Employee Productivity Dashboard</h1>
+          <p>Dashboard for HR, analyzing productivity metrics and suggesting improvements.</p>
+          <span>Power BI</span>
+        </article>
+      </a>
+    </div>
+    <div class="item-5">
+      <a href="https://github.com/Pastalino1/Customer-Segmentation-Using-K-Means-Clustering/tree/main" class="card">
+        <div class="thumb" style="background-image: url(https://i.postimg.cc/Y9gjjS5S/Screenshot-1.png);"></div>
+        <article>
+          <h1>Customer Segmentation Using K-Means Clustering</h1>
+          <span>Python</span>
+        </article>
+      </a>
+    </div>
+    <div class="item-6">
+      <a href="https://github.com/Pastalino1/Customer-Lifetime-Value-Prediction-master" class="card">
+        <div class="thumb" style="background-image: url(https://i.postimg.cc/fyN7Rpg6/image.png);"></div>
+        <article>
+          <h1>Customer Lifetime Value Prediction</h1>
+  
+          <span>Python</span>
+        </article>
+      </a>
+    </div>
+    <div class="item-7">
+      <a href="" class="card">
+        <div class="thumb" style="background-image: url(https://i.postimg.cc/263Mxbkz/crm.gif);"></div>
+        <article>
+          <h1>CRM with BI Integration</h1>
+          <span>Angular, Django</span>
+        </article>
+      </a>
+    </div>
+  </div>
+
+
+
+
+  
+  
+
+    </section>
+
+
+<!--JS-->
+<script src="https://kit.fontawesome.com/95a02bd20d.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        const body = document.querySelector('body'),
+      sidebar = body.querySelector('nav'),
+      toggle = body.querySelector(".toggle"),
+      searchBtn = body.querySelector(".search-box"),
+      modeSwitch = body.querySelector(".toggle-switch"),
+      modeText = body.querySelector(".mode-text");
+
+
+toggle.addEventListener("click" , () =>{
+    sidebar.classList.toggle("close");
+})
+
+searchBtn.addEventListener("click" , () =>{
+    sidebar.classList.remove("close");
+})
+
+modeSwitch.addEventListener("click" , () =>{
+    body.classList.toggle("dark");
+    
+    if(body.classList.contains("dark")){
+        modeText.innerText = "Light mode";
+    }else{
+        modeText.innerText = "Dark mode";
+        
+    }
+});
+    </script>
+
+
+
+</body>
+</html>

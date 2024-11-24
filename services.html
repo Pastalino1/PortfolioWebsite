@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!----======== CSS ======== -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!----===== Icons CSS ===== -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />    
+    <!--<title>Dashboard Sidebar Menu</title>--> 
+    
+<style>
+    @media (max-width: 480px) {
+        .servicestitle{
+            font-size: 20px;
+            margin-left: 10px;
+            display: block;
+        }
+        .card__heading{
+            font-size: 22px;
+        }
+    }
+
+</style>
+</head>
+<body>
+
+<!--SideBar-->
+    <nav class="sidebar close">
+        <header>
+            <div class="image-text">
+                <span class="image">
+                    <img src="assets/user.png" class="ppic">
+                </span>
+
+                <div class="text logo-text">
+                    <span class="name">Kosay Mahjoubi</span>
+                    <span class="profession">Web developer</span>
+                </div>
+            </div>
+
+            <i class="fa-solid fa-bars toggle menuicon" style="color: #ffffff;"></i>
+        </header>
+
+        <div class="menu-bar">
+            <div class="menu">
+
+
+
+                <ul class="menu-links">
+                    <li class="nav-link">
+                        <a href="index.html">
+                            <i class="fa-solid fa-user"></i>
+                            <span class="text nav-text">About Me</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="services.html">
+                            <i class="fa-solid fa-handshake"></i>
+                            <span class="text nav-text">Services</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="projects.html">
+                            <i class="fa-solid fa-folder-open"></i>
+                            <span class="text nav-text">My Projects</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="https://bio.link/koussaym">
+                            <i class="fa-solid fa-phone"></i>
+                            <span class="text nav-text">Contact </span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="testimonials.html">
+                            <i class="fa-solid fa-star"></i>
+                            <span class="text nav-text">Testimonials</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class="fa-solid fa-newspaper"></i>
+                            <span class="text nav-text">Blog</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+
+            <div class="bottom-content">
+                <li class="cv">
+                    <a href="assets/CV_KosayMahjoubi.pdf">
+                        <i class="fa-solid fa-file-arrow-down cvic" style="color: #000000;"></i>
+                        <span class="text nav-text">Download CV</span>
+                    </a>
+                </li>
+
+
+            </div>
+        </div>
+
+    </nav>
+    <div class="hire-me-button">
+        <a href="https://bio.link/koussaym">Hire Me</a>
+      </div>
+      
+<!--Main Content-->
+    <section class="home">
+        
+
+<div class="main-container">
+    <div class="heading">
+      <h1 class="heading__title servicestitle">Services Tailored For You</h1>
+    </div>
+</div>
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+
+<section class="hero-section">
+  <div class="card-grid">
+    <a class="card" href="#">
+      <div class="card__background" style="background-image: url(https://i.postimg.cc/nhw2xWD0/web-programming-languages.webp)"></div>
+      <div class="card__content">
+        <p class="card__category">See Projects</p>
+        <h3 class="card__heading">Web Development</h3>
+      </div>
+    </a>
+    <a class="card" href="#">
+      <div class="card__background" style="background-image: url(https://i.postimg.cc/T1GqQMzY/Mobile-App-Design.avif)"></div>
+      <div class="card__content">
+        <p class="card__category">See Projects</p>
+        <h3 class="card__heading">UI/UX Design</h3>
+      </div>
+    </a>
+    <a class="card" href="#">
+      <div class="card__background" style="background-image: url(https://i.postimg.cc/mrHYsgRg/1646905343926.jpg)"></div>
+      <div class="card__content">
+        <p class="card__category">See Projects</p>
+        <h3 class="card__heading">Mobile App Dev</h3>
+      </div>
+    </li>
+    <a class="card" href="#">
+      <div class="card__background" style="background-image: url(https://i.postimg.cc/j2gwfpK1/D5-1-1024x536.webp)"></div>
+      <div class="card__content">
+        <p class="card__category">See Projects</p>
+        <h3 class="card__heading">Graphic Design</h3>
+      </div>
+    </a>
+  <div>
+</section>
+
+    </section>
+
+
+<!--JS-->
+<script src="https://kit.fontawesome.com/95a02bd20d.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        const body = document.querySelector('body'),
+      sidebar = body.querySelector('nav'),
+      toggle = body.querySelector(".toggle"),
+      searchBtn = body.querySelector(".search-box"),
+      modeSwitch = body.querySelector(".toggle-switch"),
+      modeText = body.querySelector(".mode-text");
+
+
+toggle.addEventListener("click" , () =>{
+    sidebar.classList.toggle("close");
+})
+
+searchBtn.addEventListener("click" , () =>{
+    sidebar.classList.remove("close");
+})
+
+modeSwitch.addEventListener("click" , () =>{
+    body.classList.toggle("dark");
+    
+    if(body.classList.contains("dark")){
+        modeText.innerText = "Light mode";
+    }else{
+        modeText.innerText = "Dark mode";
+        
+    }
+});
+    </script>
+
+
+
+</body>
+</html>
